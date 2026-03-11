@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Royal Deep Navy */
+    --background: 216 72% 15%;
+    --foreground: 37 60% 95%;
+
+    /* Cards on dark */
+    --card: 220 20% 10%;
+    --card-foreground: 37 60% 95%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 37 60% 95%;
+
+    /* Antique Gold */
+    --primary: 41 48% 60%;
+    --primary-foreground: 216 72% 15%;
+
+    /* Regal Purple */
+    --secondary: 276 53% 37%;
+    --secondary-foreground: 37 60% 95%;
+
+    /* Charcoal muted */
+    --muted: 220 10% 16%;
+    --muted-foreground: 37 20% 65%;
+
+    /* Peacock Teal */
+    --accent: 179 80% 25%;
+    --accent-foreground: 37 60% 95%;
+
+    /* Deep Maroon */
+    --destructive: 358 72% 21%;
+    --destructive-foreground: 37 60% 95%;
+
+    --border: 41 30% 30%;
+    --input: 220 15% 18%;
+    --ring: 41 48% 60%;
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --gold: 41 48% 60%;
+    --gold-bright: 39 85% 55%;
+    --navy: 216 72% 15%;
+    --navy-deep: 220 20% 10%;
+    --maroon: 358 72% 21%;
+    --purple: 276 53% 37%;
+    --teal: 179 80% 25%;
+    --copper: 20 52% 47%;
+    --ivory: 37 60% 95%;
+    --pearl: 30 30% 96%;
+    --charcoal: 240 5% 11%;
+    --turmeric: 36 90% 55%;
+
+    --sidebar-background: 220 20% 10%;
+    --sidebar-foreground: 37 60% 95%;
+    --sidebar-primary: 41 48% 60%;
+    --sidebar-primary-foreground: 216 72% 15%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 37 60% 95%;
+    --sidebar-border: 41 30% 30%;
+    --sidebar-ring: 41 48% 60%;
+
+    /* Font families */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Cormorant Garamond', serif;
+    --font-accent: 'Crimson Text', serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, hsl(var(--gold-bright)), hsl(var(--gold)), hsl(var(--gold-bright)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gold shimmer animation */
+  .gold-shimmer {
+    background: linear-gradient(
+      110deg,
+      hsl(var(--gold)) 0%,
+      hsl(var(--gold-bright)) 40%,
+      hsl(var(--gold)) 60%,
+      hsl(var(--gold-bright)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  /* Glass morphism */
+  .glass {
+    background: hsl(var(--navy-deep) / 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--gold) / 0.2);
+  }
+
+  .glass-light {
+    background: hsl(var(--pearl) / 0.8);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Gold border glow */
+  .border-gold-glow {
+    border: 1px solid hsl(var(--gold) / 0.4);
+    box-shadow: 0 0 15px hsl(var(--gold) / 0.1), inset 0 0 15px hsl(var(--gold) / 0.05);
+  }
+
+  /* Grain texture overlay */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+  }
+
+  /* Section light background */
+  .bg-pearl {
+    background-color: hsl(var(--pearl));
+    color: hsl(var(--navy));
+  }
+
+  .bg-navy {
+    background-color: hsl(var(--navy));
+  }
+
+  .bg-charcoal {
+    background-color: hsl(var(--charcoal));
+  }
+}
+
+@layer components {
+  /* Ornamental divider */
+  .ornament-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ornament-divider::before,
+  .ornament-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+  }
+
+  /* Royal section header */
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: hsl(var(--purple));
+    font-family: var(--font-body);
+    font-weight: 600;
+  }
+
+  .section-label-gold {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: hsl(var(--gold));
+    font-family: var(--font-body);
+    font-weight: 600;
+  }
+}
+
+/* Keyframes */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 5px hsl(var(--gold) / 0.3); }
+  50% { box-shadow: 0 0 20px hsl(var(--gold) / 0.6); }
+}
+
+@keyframes scrollDown {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(10px); opacity: 0.5; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Scroll animation classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
